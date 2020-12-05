@@ -25,6 +25,8 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v2
+        env:
+          VUE_APP_MAPBOX_ACCESS_TOKEN: ${{ secrets.VUE_APP_MAPBOX_ACCESS_TOKEN }}
         with:
           start: yarn serve
           wait-on: http://localhost:8080/
