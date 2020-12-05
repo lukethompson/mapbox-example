@@ -1,36 +1,44 @@
 <template>
-  <MglMap
-    :access-token="$options.accessToken"
-    :attribution-control="false"
-    data-cy="map-display"
-    :map-style="$options.mapStyle"
-    :center="center"
-    :zoom="14"
-    @load="handleMapLoad"
-  >
-    <MglMarker
-      v-for="feature in filteredFeatures"
-      :key="feature.properties.id"
-      :coordinates="feature.geometry.coordinates"
-      :color="feature.properties.color"
-      data-cy="map-display__marker"
+  <div class="map-display">
+    <ASpin
+      v-if="!isLoaded"
+      class="map-display__loader"
+      size="large"
+    />
+    <MglMap
+      v-show="isLoaded"
+      :access-token="$options.accessToken"
+      :attribution-control="false"
+      data-cy="map-display"
+      :map-style="$options.mapStyle"
+      :center="center"
+      :zoom="14"
+      @load="handleMapLoad"
     >
-      <MglPopup>
-        <dl>
-          <dt>Title</dt>
-          <dd>{{ feature.properties.project.Title }}</dd>
-          <template v-for="filter in filterConfigKeys">
-            <dt :key="`${getFilterKey(filter)}.dt`">
-              {{ getFilterKey(filter) }}
-            </dt>
-            <dd :key="`${getFilterKey(filter)}.dd`">
-              {{ feature.properties.project[getFilterKey(filter)] }}
-            </dd>
-          </template>
-        </dl>
-      </MglPopup>
-    </MglMarker>
-  </MglMap>
+      <MglMarker
+        v-for="feature in filteredFeatures"
+        :key="feature.properties.id"
+        :coordinates="feature.geometry.coordinates"
+        :color="feature.properties.color"
+        data-cy="map-display__marker"
+      >
+        <MglPopup>
+          <dl>
+            <dt>Title</dt>
+            <dd>{{ feature.properties.project.Title }}</dd>
+            <template v-for="filter in filterConfigKeys">
+              <dt :key="`${getFilterKey(filter)}.dt`">
+                {{ getFilterKey(filter) }}
+              </dt>
+              <dd :key="`${getFilterKey(filter)}.dd`">
+                {{ feature.properties.project[getFilterKey(filter)] }}
+              </dd>
+            </template>
+          </dl>
+        </MglPopup>
+      </MglMarker>
+    </MglMap>
+  </div>
 </template>
 
 <script>
@@ -64,6 +72,7 @@ export default {
   data () {
     return {
       center: [0, 0],
+      isLoaded: false,
       mapbox: null,
     }
   },
@@ -92,15 +101,25 @@ export default {
       return [longAvg, latAvg]
     },
     handleMapLoad ({ map, component }) {
-      map.resize()
+      this.isLoaded = true
+      this.$nextTick(() => {
+        map.resize()
+      })
     },
   },
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
-.mapboxgl {
+.map-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/deep/ .mapboxgl {
   &-canvas:focus,
   &-popup-close-button:focus { outline: none }
 }
