@@ -63,8 +63,8 @@ export default {
 
   data () {
     return {
-      mapbox: null,
       center: [0, 0],
+      mapbox: null,
     }
   },
 
