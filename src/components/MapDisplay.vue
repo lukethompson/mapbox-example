@@ -14,7 +14,18 @@
       :color="feature.properties.color"
     >
       <MglPopup>
-        {{ feature.properties.project.Title }}
+        <dl>
+          <dt>Title</dt>
+          <dd>{{ feature.properties.project.Title }}</dd>
+          <template v-for="filter in filterConfigKeys">
+            <dt :key="`${getFilterKey(filter)}.dt`">
+              {{ getFilterKey(filter) }}
+            </dt>
+            <dd :key="`${getFilterKey(filter)}.dd`">
+              {{ feature.properties.project[getFilterKey(filter)] }}
+            </dd>
+          </template>
+        </dl>
       </MglPopup>
     </MglMarker>
   </MglMap>
@@ -30,11 +41,17 @@ import {
   MglPopup,
 } from 'vue-mapbox'
 
+import filterConfigMixin from '@/mixins/filterConfigMixin'
+
 export default {
   name: 'MapDisplay',
 
   accessToken: process.env.VUE_APP_MAPBOX_ACCESS_TOKEN,
   mapStyle: 'mapbox://styles/mapbox/light-v10',
+
+  mixins: [
+    filterConfigMixin,
+  ],
 
   components: {
     MglMap,
