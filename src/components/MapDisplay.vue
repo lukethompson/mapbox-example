@@ -5,7 +5,7 @@
     :map-style="$options.mapStyle"
     :center="center"
     :zoom="14"
-    @load="onMapLoad"
+    @load="handleMapLoad"
   >
     <MglMarker
       v-for="feature in filteredFeatures"
@@ -72,7 +72,7 @@ export default {
       const latAvg = totalCoords[1] / this.filteredFeatures.length
       return [longAvg, latAvg]
     },
-    onMapLoad ({ map, component }) {
+    handleMapLoad ({ map, component }) {
       map.resize()
     },
   },
