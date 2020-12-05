@@ -1,6 +1,18 @@
 <template>
   <div id="app">
-    <MapDisplay />
+    <ALayout class="app-layout">
+      <ALayoutSider
+        breakpoint="lg"
+        collapsed-width="0"
+      >
+        <!-- TODO: Add sidebar -->
+      </ALayoutSider>
+      <ALayout>
+        <ALayoutContent>
+          <MapDisplay />
+        </ALayoutContent>
+      </ALayout>
+    </ALayout>
   </div>
 </template>
 
@@ -9,22 +21,15 @@ import MapDisplay from '@/components/MapDisplay'
 
 export default {
   name: 'App',
+
   components: {
     MapDisplay,
   },
 }
 </script>
 
-<style lang="scss">
-html,
-body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-#app {
+<style lang="scss" scoped>
+#app, .app-layout {
   height: 100%;
 }
 </style>
