@@ -1,9 +1,9 @@
 import { createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
-import { storeConfig } from '@/store'
 import cloneDeep from 'lodash/cloneDeep'
 
 import { filterConfig } from '@/config'
+import { storeConfig } from '@/store'
 
 const factory = (mockState) => {
   const localVue = createLocalVue()
