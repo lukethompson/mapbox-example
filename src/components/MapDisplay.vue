@@ -1,6 +1,7 @@
 <template>
   <MglMap
     :access-token="$options.accessToken"
+    :attribution-control="false"
     :map-style="$options.mapStyle"
     :center="center"
     :zoom="14"
