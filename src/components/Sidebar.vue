@@ -18,7 +18,7 @@
         Filters
       </h2>
       <AForm layout="vertical">
-        <template v-for="filter in filters">
+        <template v-for="filter in filterConfigKeys">
           <AFormItem
             :key="$options.filterConfig[filter].key"
             class="sidebar__form-item"
@@ -80,7 +80,7 @@ export default {
       'filterOptions',
       'filters',
     ]),
-    filters () {
+    filterConfigKeys () {
       return Object.keys(filterConfig)
     },
   },
