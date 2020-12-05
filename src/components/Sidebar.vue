@@ -1,8 +1,8 @@
 <template>
   <ALayoutSider
+    breakpoint="lg"
     class="sidebar"
     collapsed-width="0"
-    breakpoint="lg"
   >
     <div class="sidebar__content">
       <h1 class="sidebar__heading">
