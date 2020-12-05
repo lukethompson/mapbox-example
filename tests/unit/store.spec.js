@@ -19,13 +19,13 @@ describe('mutations', () => {
   describe('setFilter', () => {
     it('can initialize a new filter', () => {
       const store = factory()
-      store.commit('setFilter', { filter: 'category', value: null })
-      expect(store.state.filters.category).toBe(null)
+      store.commit('setFilter', { filter: 'category' })
+      expect(store.state.filters.category).toBe(undefined)
     })
 
     it('can update the value of a filter', () => {
       const store = factory()
-      store.commit('setFilter', { filter: 'category', value: null })
+      store.commit('setFilter', { filter: 'category' })
       const value = 'Test Category'
       store.commit('setFilter', { filter: 'category', value })
       expect(store.state.filters.category).toBe(value)
@@ -88,10 +88,10 @@ describe('actions', () => {
       expect(Object.keys(store.state.filters)).toEqual(Object.keys(filterConfig))
     })
 
-    it('sets each filter to null', () => {
+    it('sets each filter to undefined', () => {
       const store = factory()
       store.dispatch('initFilters')
-      expect(Object.values(store.state.filters)).toEqual(Object.keys(filterConfig).map(filter => null))
+      expect(Object.values(store.state.filters)).toEqual(Object.keys(filterConfig).map(filter => undefined))
     })
   })
 })
