@@ -5,6 +5,7 @@ import {
   Layout,
   Select,
   Slider,
+  Spin,
 } from 'ant-design-vue'
 import antInputDirective from 'ant-design-vue/es/_util/antInputDirective'
 
@@ -17,5 +18,6 @@ Vue.component(Layout.Sider.name, Layout.Sider)
 Vue.component(Select.name, Select)
 Vue.component(Select.Option.name, Select.Option)
 Vue.component(Slider.name, Slider)
+Vue.component(Spin.name, Spin)
 
 Vue.use(antInputDirective)
