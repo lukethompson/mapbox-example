@@ -53,13 +53,13 @@ export const storeConfig = {
     // Initialize state to hold selected filter values
     initFilters: ({ state, commit }) => {
       Object.keys(filterConfig)
-        .forEach(filter => commit('setFilter', { filter, value: null }))
+        .forEach(filter => commit('setFilter', { filter }))
     },
   },
   getters: {
     filteredFeatures: (state) => {
       const activeFilters = Object.keys(state.filters)
-        .filter(filter => !!state.filters[filter])
+        .filter(filter => state.filters[filter] !== undefined)
       return state.geoJsonFeatures.filter(({ properties }) =>
         activeFilters.every(filter => {
           const { key, type } = filterConfig[filter]
