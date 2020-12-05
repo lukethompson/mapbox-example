@@ -73,3 +73,12 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+
+.mapboxgl {
+  &-canvas:focus,
+  &-popup-close-button:focus { outline: none }
+}
+
+</style>
