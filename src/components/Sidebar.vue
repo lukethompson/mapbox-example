@@ -3,6 +3,7 @@
     breakpoint="lg"
     class="sidebar"
     collapsed-width="0"
+    data-cy="sidebar"
   >
     <div class="sidebar__content">
       <h1 class="sidebar__heading">
@@ -36,6 +37,7 @@
             <template v-if="getFilterType(filter) === $options.FILTER_TYPE_SELECT">
               <ASelect
                 allow-clear
+                :data-cy="`sidebar__input--${filter}`"
                 :placeholder="`Select ${getFilterKey(filter)}`"
                 show-search
                 :value="filters[filter]"

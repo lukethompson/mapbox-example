@@ -2,6 +2,7 @@
   <MglMap
     :access-token="$options.accessToken"
     :attribution-control="false"
+    data-cy="map-display"
     :map-style="$options.mapStyle"
     :center="center"
     :zoom="14"
@@ -12,6 +13,7 @@
       :key="feature.properties.id"
       :coordinates="feature.geometry.coordinates"
       :color="feature.properties.color"
+      data-cy="map-display__marker"
     >
       <MglPopup>
         <dl>
