@@ -1,12 +1,7 @@
 <template>
   <div id="app">
     <ALayout class="app-layout">
-      <ALayoutSider
-        breakpoint="lg"
-        collapsed-width="0"
-      >
-        <!-- TODO: Add sidebar -->
-      </ALayoutSider>
+      <Sidebar />
       <ALayout>
         <ALayoutContent>
           <MapDisplay />
@@ -18,12 +13,14 @@
 
 <script>
 import MapDisplay from '@/components/MapDisplay'
+import Sidebar from '@/components/Sidebar'
 
 export default {
   name: 'App',
 
   components: {
     MapDisplay,
+    Sidebar,
   },
 
   created () {
