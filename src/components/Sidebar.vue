@@ -20,11 +20,11 @@
       <AForm layout="vertical">
         <template v-for="filter in filterConfigKeys">
           <AFormItem
-            :key="$options.filterConfig[filter].key"
+            :key="getFilterKey(filter)"
             class="sidebar__form-item"
-            :label="$options.filterConfig[filter].key"
+            :label="getFilterKey(filter)"
           >
-            <template v-if="$options.filterConfig[filter].type === $options.FILTER_TYPE_RANGE">
+            <template v-if="getFilterType(filter) === $options.FILTER_TYPE_RANGE">
               <ASlider
                 :default-value="filterOptions[filter]"
                 :max="filterOptions[filter][1]"
@@ -33,10 +33,10 @@
                 @change="handleChange($event, filter)"
               />
             </template>
-            <template v-if="$options.filterConfig[filter].type === $options.FILTER_TYPE_SELECT">
+            <template v-if="getFilterType(filter) === $options.FILTER_TYPE_SELECT">
               <ASelect
                 allow-clear
-                :placeholder="`Select ${$options.filterConfig[filter].key}`"
+                :placeholder="`Select ${getFilterKey(filter)}`"
                 show-search
                 :value="filters[filter]"
                 @change="handleChange($event, filter)"
@@ -61,7 +61,7 @@
 <script>
 import { mapState } from 'vuex'
 
-import { filterConfig } from '@/config'
+import filterConfigMixin from '@/mixins/filterConfigMixin'
 import {
   FILTER_TYPE_RANGE,
   FILTER_TYPE_SELECT,
@@ -70,19 +70,18 @@ import {
 export default {
   name: 'Sidebar',
 
-  filterConfig,
-
   FILTER_TYPE_RANGE,
   FILTER_TYPE_SELECT,
+
+  mixins: [
+    filterConfigMixin,
+  ],
 
   computed: {
     ...mapState([
       'filterOptions',
       'filters',
     ]),
-    filterConfigKeys () {
-      return Object.keys(filterConfig)
-    },
   },
 
   methods: {
