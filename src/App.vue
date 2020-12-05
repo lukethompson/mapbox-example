@@ -25,6 +25,11 @@ export default {
   components: {
     MapDisplay,
   },
+
+  created () {
+    this.$store.dispatch('initFilterOptions')
+    this.$store.dispatch('initFilters')
+  },
 }
 </script>
 
