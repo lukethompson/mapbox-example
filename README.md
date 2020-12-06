@@ -8,7 +8,7 @@ Simple test and deploy workflows have been added with Github Actions.
 
 ## Project setup
 
-**⚠️ WARNING:** to boot the app locally you will need a mapbox access token. Create an `.env` file in the project root and add the environment variable `VUE_APP_MAPBOX_ACCESS_TOKEN`.
+**⚠️ WARNING:** to boot the app locally you will need a [mapbox access token](https://docs.mapbox.com/help/how-mapbox-works/access-tokens/). Create an `.env` file in the project root and add the environment variable `VUE_APP_MAPBOX_ACCESS_TOKEN`.
 
 ```
 # .env
